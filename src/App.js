@@ -8,17 +8,17 @@ class App extends Component{
   //   count:0
   // }
 
-  increase = ()=>{
-    this.setState({
-      count:this.state.count + 1
-    })
-  }
+  // increase = ()=>{
+  //   this.setState({
+  //     count:this.state.count + 1
+  //   })
+  // }
 
-  decrease = ()=>{
-    this.setState({
-      count:this.state.count - 1
-    })
-  }
+  // decrease = ()=>{
+  //   this.setState({
+  //     count:this.state.count - 1
+  //   })
+  // }
   render(){
     console.log(this.props);
     
@@ -31,9 +31,9 @@ class App extends Component{
     
         </header>
         <section>
-          <button onClick={this.increase}>+</button>
+          <button onClick={this.props.increase}>+</button>
           <p>{this.props.count}</p>
-          <button onClick={this.decrease}>-</button>
+          <button onClick={this.props.decrease}>-</button>
 
         </section>
       </div>
@@ -45,4 +45,11 @@ function mapStateToProps(state){
     count : state.count
   }
 }
-  export default connect(mapStateToProps)(App);
+
+function mapDispatchToProps (dispatch){
+  return {
+    increase : ()=> dispatch({type:'INCREASE'}),
+    decrease :()=> dispatch({type :`DECREASE`})
+  }
+}
+  export default connect(mapStateToProps,mapDispatchToProps)(App);
